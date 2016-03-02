@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <h1>New URL List</h1>
+</div>
+<table class="table table-bordered">
+    <tr>
+        <th> No. </th>
+        <th> Original URL </th>
+        <th> New URL </th>
+        <th> Creation Date/Time </th>
+    </tr>
+    {% for url in object_list %}
+    <tr>
+        <td>{{ url.id }}</td>
+        <td><a target="blank" href="{{ url.input_url }}">{{ url.input_url }}</a></td>
+        <td><a target="blank" href="{{ url.input_url }}">http://127.0.0.1:8000/j/{{ url.output_url }}</a></td>
+        <td> {{ url.timestamp }}</td>
+{% endfor %}
+    </tr>
+</table>
+
+
+    <a href="{% url 'url_create_view' %}"> <input type="submit" value="Create New URL"></a>
+
+
+
+{% endblock %}

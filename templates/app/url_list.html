@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+<h1>Welcome to the New URL Maker</h1>
+
+<div>
+    <h3>New URL List</h3>
+</div>
+<table class="table table-bordered">
+    <tr>
+        <th> No. </th>
+        <th> User </th>
+        <th> Original URL </th>
+        <th> New URL </th>
+        <th> Creation Date/Time </th>
+    </tr>
+    {% for url in object_list %}
+    <tr>
+        <td>{{ url.id }}</td>
+        <td>{{ url.user }}</td>
+        <td><a target="blank" href="{{ url.input_url }}">{{ url.input_url }}</a></td>
+        <td><a target="blank" href="{{ url.input_url }}">http://127.0.0.1:8000/j/{{ url.output_url }}</a></td>
+        <td> {{ url.timestamp }}</td>
+{% endfor %}
+    </tr>
+</table>
+
+
+{% endblock %}
