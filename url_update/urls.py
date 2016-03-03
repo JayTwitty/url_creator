@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', URLListView.as_view(), name="url_index_view"),
     url(r'^accounts/login/$', auth_views.login, name='login'),
-    url(r'^accounts/logout/$', auth_views.logout, name='logout'),
+    url(r'^accounts/logout/$', auth_views.logout_then_login, name='logout'),
     url(r'^url/new/$', URLCreateView.as_view(), name='url_create_view'),
     url(r'^user/$', UserListView.as_view(), name='user_index_view'),
     url(r'^user/update/(?P<pk>\d+)/$', URLUpdateView.as_view(), name="url_update_view"),

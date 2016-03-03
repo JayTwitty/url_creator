@@ -13,7 +13,9 @@
     <h5><a href="{% url 'user_index_view' %}">Personal URL List</a></h5>
     <h5><a href="{% url 'logout' %}">Logout</a></h5>
 {% else %}
+    <h5><a href="{% url 'url_index_view' %}">Home</a></h5>
     <h3><a href="{% url 'login' %}"><u>Login</u></a> to Create a New URL</h3>
+
 {% endif %}
 
 

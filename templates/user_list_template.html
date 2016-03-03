@@ -5,6 +5,10 @@
 <div>
     <h1>New URL List</h1>
 </div>
+
+    <a href="{% url 'url_create_view' %}"> <input type="submit" value="Create New URL"></a>
+    <br>
+    <br>
 <table class="table table-bordered">
     <tr>
         <th> No. </th>
@@ -17,7 +21,7 @@
     {% for url in object_list %}
     <tr>
         <td>{{ url.id }}</td>
-        <td><a target="blank" href="{{ url.input_url }}">{{ url.input_url }}</a></td>
+        <td>{{ url.input_url }}</td>
         <td><a target="blank" href="{% url 'redirect_view' url.output_url %}">http://127.0.0.1:8000/j/{{ url.output_url }}</a></td>
         <td> {{ url.timestamp }}</td>
         <td><a href="{% url 'url_update_view' url.id %}">Update</a></td>

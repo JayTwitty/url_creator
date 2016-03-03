@@ -8,7 +8,6 @@
 </div>
 <table class="table table-bordered">
     <tr>
-        <th> No. </th>
         <th> User </th>
         <th> Original URL </th>
         <th> New URL </th>
@@ -16,10 +15,9 @@
     </tr>
     {% for url in object_list %}
     <tr>
-        <td>{{ url.id }}</td>
         <td>{{ url.user }}</td>
-        <td><a target="blank" href="{{ url.input_url }}">{{ url.input_url }}</a></td>
-        <td><a target="blank" href="{{ url.input_url }}">http://127.0.0.1:8000/j/{{ url.output_url }}</a></td>
+        <td>{{ url.input_url }}</td>
+        <td><a target="blank" href="{% url 'redirect_view' url.output_url %}">http://127.0.0.1:8000/j/{{ url.output_url }}</a></td>
         <td> {{ url.timestamp }}</td>
 {% endfor %}
     </tr>
