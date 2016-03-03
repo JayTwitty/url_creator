@@ -27,4 +27,4 @@ class URL(models.Model):
 
 class Click(models.Model):
     clicked = models.BooleanField(default=True)
-    tweet = models.ForeignKey(URL)
+    url = models.ForeignKey(URL)

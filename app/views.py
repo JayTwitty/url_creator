@@ -3,11 +3,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from hashids import Hashids
 
 from app.forms import URLForm
-from app.models import URL
+from app.models import URL, Click
 
 
 class URLListView(ListView):
@@ -48,3 +48,18 @@ class UserListView(ListView):
         user=self.request.user
         return URL.objects.filter(user=user)
 
+
+class URLDetailView(DetailView):
+    model = URL
+
+    def get_object(self, queryset=None):
+        object=super().get_object()
+        Click.objects.create(url=object)
+        return object
+
+class URLUpdateView(UpdateView):
+    model = URL
+    fields = ('input_url', )
+
+    def get_success_url(self):
+        return reverse("user_index_view")

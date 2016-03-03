@@ -1,0 +1,9 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <div> Original URL: <a href="{{ url.input_url }}">{{ object.input_url }}</a>
+    </div> New URL: <a href="{{ url.input_url }}">http://127.0.0.1:8000/j{{ object.output_url }}</a>
+    <h1>Click Counter: {{ object.click_count }}</h1>
+
+{% endblock %}

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from app.views import URLCreateView, URLListView, UserListView, redirect_view
+from app.views import URLCreateView, URLListView, UserListView, redirect_view, URLDetailView, URLUpdateView
 from django.contrib.auth import views as auth_views
 
 
@@ -25,7 +25,10 @@ urlpatterns = [
     url(r'^accounts/login/$', auth_views.login, name='login'),
     url(r'^accounts/logout/$', auth_views.logout, name='logout'),
     url(r'^url/new/$', URLCreateView.as_view(), name='url_create_view'),
-    url(r'^user', UserListView.as_view(), name='user_index_view'),
-    url(r'j/(?P<captured_id>\w+)', redirect_view)
+    url(r'^user/$', UserListView.as_view(), name='user_index_view'),
+    url(r'^user/update/(?P<pk>\d+)/$', URLUpdateView.as_view(), name="url_update_view"),
+    url(r'j/(?P<captured_id>\w+)', redirect_view),
+    url(r'^user/(?P<pk>\d+)', URLDetailView.as_view(), name="url_detail_view")
+
 
 ]
