@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
@@ -22,27 +23,21 @@ class URLCreateView(CreateView):
         object = form.save(commit=False)
         object.user = self.request.user
         object.save()
+        hashids = Hashids(min_length=5)
+        hashid = hashids.encode(object.id)
+        object.output_url=hashid
+        object.save()
         return super().form_valid(form)
 
     def get_success_url(self):
         return reverse("user_index_view")
 
-    def get(self, request):
-        url_form = URLForm()
-        return render(request, "app/url_form.html", {"form": url_form})
 
-    def post(self, request):
-        form_instance = URLForm(self.request.POST)
-        hashids = Hashids()
-        if form_instance.is_valid():
-            url_object = form_instance.save()
-            hashid = hashids.encode(url_object.id)
-            url_object.output_url=hashid
-            url_object.user=self.request.user
-            url_object.save()
-            bookmarks = URL.objects.all()
-        return render(request, 'user_list_template.html', {"bookmarks":bookmarks,
-                                                'url': url_object})
+def redirect_view(request, captured_id):
+    redirect_object = URL.objects.get(output_url=captured_id)
+    redirect = redirect_object.input_url
+    return HttpResponseRedirect(redirect)
+
 
 class UserListView(ListView):
     model = URL
@@ -52,3 +47,4 @@ class UserListView(ListView):
     def get_queryset(self):
         user=self.request.user
         return URL.objects.filter(user=user)
+
