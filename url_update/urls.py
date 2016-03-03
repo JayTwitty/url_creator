@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^url/new/$', URLCreateView.as_view(), name='url_create_view'),
     url(r'^user/$', UserListView.as_view(), name='user_index_view'),
     url(r'^user/update/(?P<pk>\d+)/$', URLUpdateView.as_view(), name="url_update_view"),
-    url(r'j/(?P<captured_id>\w+)', redirect_view),
+    url(r'j/(?P<captured_id>\w+)', redirect_view, name="redirect_view"),
     url(r'^user/(?P<pk>\d+)', URLDetailView.as_view(), name="url_detail_view")
 
 

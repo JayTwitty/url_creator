@@ -18,7 +18,7 @@
     <tr>
         <td>{{ url.id }}</td>
         <td><a target="blank" href="{{ url.input_url }}">{{ url.input_url }}</a></td>
-        <td><a target="blank" href="{{ url.input_url }}">http://127.0.0.1:8000/j/{{ url.output_url }}</a></td>
+        <td><a target="blank" href="{% url 'redirect_view' url.output_url %}">http://127.0.0.1:8000/j/{{ url.output_url }}</a></td>
         <td> {{ url.timestamp }}</td>
         <td><a href="{% url 'url_update_view' url.id %}">Update</a></td>
         <td><a href="{% url 'url_detail_view' url.id %}">Details</a></td>
